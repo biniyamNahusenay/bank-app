@@ -4,7 +4,7 @@ import com.bank.bankapp.dto.BankAccountDto;
     
 public interface AccountService {
 
-    BankAccountDto createAccount();
+    BankAccountDto createAccount(String accountType);
 
     BankAccountDto getMyAccount();
 

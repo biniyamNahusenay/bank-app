@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.bank.bankapp.dto.JwtAuthResponse;
 import com.bank.bankapp.dto.LoginDto;
+import com.bank.bankapp.dto.RefreshTokenRequest;
 import com.bank.bankapp.dto.RegisterDto;
 import com.bank.bankapp.service.AuthService;
 
@@ -30,6 +31,12 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<JwtAuthResponse> login(@RequestBody LoginDto loginDto) {
         JwtAuthResponse jwtAuthResponse = authService.login(loginDto);
+        return ResponseEntity.ok(jwtAuthResponse);
+    }
+
+    @PostMapping("/refresh")
+    public ResponseEntity<JwtAuthResponse> refreshToken(@RequestBody RefreshTokenRequest refreshTokenRequest) {
+        JwtAuthResponse jwtAuthResponse = authService.refreshToken(refreshTokenRequest);
         return ResponseEntity.ok(jwtAuthResponse);
     }
 }

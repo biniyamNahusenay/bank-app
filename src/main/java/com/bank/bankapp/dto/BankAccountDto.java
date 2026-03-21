@@ -9,6 +9,7 @@ public class BankAccountDto {
 
     private String accountNumber;
     private BigDecimal balance;
+    private String accountType;
 
     // getters and setters
 }

@@ -15,7 +15,6 @@ import com.bank.bankapp.entity.BankAccount;
 import com.bank.bankapp.entity.Transaction;
 import com.bank.bankapp.repository.BankAccountRepository;
 import com.bank.bankapp.repository.TransactionRepository;
-import com.bank.bankapp.service.NotificationService;
 import com.bank.bankapp.service.TransactionService;
 
 import jakarta.transaction.Transactional;
@@ -27,7 +26,6 @@ public class TransactionServiceImpl implements TransactionService {
 
     private final BankAccountRepository accountRepository;
     private final TransactionRepository transactionRepository;
-    private final NotificationService notificationService;
 
     @Transactional // CRITICAL: Ensures Atomicity
     @Override
@@ -67,14 +65,6 @@ public class TransactionServiceImpl implements TransactionService {
         transaction.setStatus("SUCCESS");
 
         transactionRepository.save(transaction);
-
-        // Trigger Async Notification
-        String message = String.format("Transfer of %s from %s to %s was successful.",
-                request.getAmount(),
-                request.getFromAccountNumber(),
-                request.getToAccountNumber());
-
-        notificationService.sendTransactionNotification(message);
 
         return "Transfer successful! Transaction ID: " + transaction.getTransactionId();
     }

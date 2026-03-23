@@ -1,5 +1,7 @@
 package com.bank.bankapp.service;
 
+import java.math.BigDecimal;
+
 import com.bank.bankapp.dto.BankAccountDto;
     
 public interface AccountService {
@@ -9,4 +11,6 @@ public interface AccountService {
     BankAccountDto getMyAccount();
 
     BankAccountDto getAccountByNumber(String accountNumber);
+
+    BankAccountDto depositToMyAccount(BigDecimal amount);
 }

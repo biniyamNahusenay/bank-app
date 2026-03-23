@@ -84,7 +84,7 @@ public class TransactionServiceImpl implements TransactionService {
         }
 
         int safePage = Math.max(page, 0);
-        int safeSize = Math.min(Math.max(size, 1), 50);
+        int safeSize = Math.min(Math.max(size, 1), 6);
         String normalizedFilter = normalizeFilter(filter);
 
         Page<Transaction> transactionPage = switch (normalizedFilter) {
@@ -99,10 +99,15 @@ public class TransactionServiceImpl implements TransactionService {
                 .collect(Collectors.toList()));
         response.setCurrentPage(transactionPage.getNumber());
         response.setPageSize(transactionPage.getSize());
+        response.setNextPage(transactionPage.hasNext() ? transactionPage.getNumber() + 1 : transactionPage.getNumber());
+        response.setPreviousPage(
+                transactionPage.hasPrevious() ? transactionPage.getNumber() - 1 : transactionPage.getNumber());
         response.setTotalPages(transactionPage.getTotalPages());
         response.setTotalTransactions(transactionPage.getTotalElements());
         response.setHasNext(transactionPage.hasNext());
         response.setHasPrevious(transactionPage.hasPrevious());
+        response.setFirst(transactionPage.isFirst());
+        response.setLast(transactionPage.isLast());
         return response;
     }
 

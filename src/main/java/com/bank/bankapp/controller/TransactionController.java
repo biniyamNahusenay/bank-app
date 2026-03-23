@@ -35,7 +35,7 @@ public class TransactionController {
             @PathVariable String accountNumber,
             @RequestParam(defaultValue = "all") String filter,
             @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size,
+            @RequestParam(defaultValue = "6") int size,
             Authentication authentication) {
         return ResponseEntity.ok(
                 transactionService.getTransactionHistory(accountNumber, authentication.getName(), filter, page, size));

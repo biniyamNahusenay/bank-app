@@ -1,0 +1,12 @@
+{
+  "expo": {
+    "extra": {
+      "eas": {
+        "projectId": "7ae62ed3-5f6d-4dfb-a499-9e4dd6ee823d"
+      }
+    },
+    "android": {
+      "package": "com.nahoo.bankApp"
+    }
+  }
+}

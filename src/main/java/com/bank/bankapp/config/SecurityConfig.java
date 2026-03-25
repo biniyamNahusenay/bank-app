@@ -40,6 +40,7 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable()) // Disabled for stateless APIs
                 .authorizeHttpRequests((authorize) ->
                         authorize.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                                .requestMatchers("/").permitAll()
                                 .requestMatchers("/health").permitAll()
                                 .requestMatchers("/api/auth/**").permitAll() // Public
                                 .requestMatchers("/swagger-ui/**", "/swagger-ui.html", "/v3/api-docs/**").permitAll() // Docs
